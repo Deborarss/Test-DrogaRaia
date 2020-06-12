@@ -1,11 +1,7 @@
 import styled, { css } from 'styled-components';
 
-interface CardContainerProps {
-  type?: string;
-}
-
-interface ButtonProps {
-  type?: string;
+interface ColorsCardButtonProps {
+  type?: 'desktop' | 'tablet' | 'mobile';
 }
 
 export const Container = styled.div`
@@ -34,9 +30,14 @@ export const Card = styled.div`
   }
 `;
 
-export const CardHeader = styled.div<CardContainerProps>`
-  background-color: #fe9481;
+export const CardHeader = styled.div<ColorsCardButtonProps>`
   height: 230px;
+
+  ${(props) =>
+    props.type === 'desktop' &&
+    css`
+      background-color: #fe9481;
+    `}
 
   ${(props) =>
     props.type === 'tablet' &&
@@ -74,14 +75,19 @@ export const CardHeader = styled.div<CardContainerProps>`
   }
 `;
 
-export const Button = styled.span<ButtonProps>`
+export const Button = styled.span<ColorsCardButtonProps>`
   margin-top: 6px;
   display: block;
   text-align: right;
-  background-color: #fe9481;
   position: absolute;
   right: 14px;
   padding: 2px 4px;
+
+  ${(props) =>
+    props.type === 'desktop' &&
+    css`
+      background-color: #fe9481;
+    `}
 
   ${(props) =>
     props.type === 'tablet' &&
